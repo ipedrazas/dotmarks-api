@@ -10,7 +10,7 @@ The dotMarks REST API is built using [Eve][1] a Python REST API Framework. A [Ni
 
 ### Docker
 
-The easiest way of running dotMarks is by launching [Docker][3] containers. To install Docker, go to [docker.com][3] and follow the instructions.
+The easiest way of running dotMarks is by launching [Docker][3] containers. To install Docker, go to [docker.com][4] and follow the instructions.
 
 You can run docker in Linux, OSX and Windows.
 
@@ -55,3 +55,4 @@ If you want to run it as a daemon or dettached, use the followin command
   [1]: http://python-eve.org/
   [2]: https://twitter.com/nicolaiarocci
   [3]: http://www.docker.com/
+  [4]: https://docs.docker.com/installation/#installation
