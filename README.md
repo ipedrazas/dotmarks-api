@@ -45,3 +45,7 @@ First we build our image, from the project folder we execute
 Then, to run it, we will have to do
 
     docker run -it --rm --link mongodb:mongodb -p 5000:5000 dotmarks-api:1
+
+
+  [1]: http://python-eve.org/
+  [2]: https://twitter.com/nicolaiarocci
