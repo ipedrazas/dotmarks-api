@@ -47,9 +47,9 @@ Then, to run it, we will have to do
     docker run -it --rm --link mongodb:mongodb -p 5000:5000 dotmarks-api:1
 
 
-If you want to run it as a daemon or dettached, use the followin command
+If you want to run it as a daemon or dettached, use the following command
 
-    docker run -d -p 5000:5000 --rm --link mongodb:mongodb  dotmarks-api:1
+    docker run -d -p 5000:5000 --rm --link mongodb:mongodb  --name dotmarks-api dotmarks-api:1
 
 
   [1]: http://python-eve.org/
