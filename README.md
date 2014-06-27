@@ -1,7 +1,7 @@
 
 
-dotMarks
-========
+dotMarks-api
+============
 
 ### Self Hosted Bookmarks
 
@@ -10,7 +10,7 @@ Bookmarks? really? this is the thing. I'm lazy... I just wanted one single place
 Every app has its purpouse but I just wanted to have a master copy of all of them. This is dotMarks. A system to keep your bookmarks. It's not going to replace any of the systems you currently use, it's just going to keep all your bookmarks there, you know, just in case you need them.
 
 ### Interior design
-The system is built using [Eve][1] a Python REST API Framework. A [Nicola Iarocci][2] Project.e
+The system is built using [Eve][1] a Python REST API Framework. A [Nicola Iarocci][2] Project.
 
 
 ## Docker
