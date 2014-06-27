@@ -24,12 +24,17 @@ Pull and run Mongodb Image:
     docker run -d -p 27017:27017 --name mongodb dockerfile/mongodb mongod
 
 To run MongoDB with a persistent directory, use:
+
     mkdir /data/mongod
     docker run -d -p 27017:27017 -v /data/mongodb:/data/db --name mongodb dockerfile/mongodb mongod
+
+This will run a container with mongod and the data will be stored in the directory /data/mongodb in the host. This is, where
+the container runs.
 
 To have a mongo console, you can run the following command:
 
     docker run -it --rm --link mongodb:mongodb dockerfile/mongodb bash -c 'mongo --host $MONGODB_PORT_27017_TCP_ADDR'
+
 
 ### Build dotmarks-api image
 
