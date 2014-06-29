@@ -23,7 +23,7 @@ Pull and run Mongodb Image:
 
 To run MongoDB with a persistent directory, use:
 
-    sudo mkdir -p /data/mongod
+    sudo mkdir -p /data/mongodb
     docker run -d -p 27017:27017 -v /data/mongodb:/data/db \
         --name mongodb dockerfile/mongodb mongod
 
@@ -34,6 +34,13 @@ To have a mongo console, you can run the following command:
 
     docker run -it --rm --link mongodb:mongodb \
         dockerfile/mongodb bash -c 'mongo --host $MONGODB_PORT_27017_TCP_ADDR'
+
+### Redis Image
+
+Pull and run Redis Image:
+
+    sudo mkdir -p /data/redis
+    docker run -d -v /data/redis:/data --name dotmarks-redis -p 6379:6379 dockerfile/redis
 
 
 ### Build dotmarks-api image
