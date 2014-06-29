@@ -5,8 +5,8 @@
 # build: docker build -t ipedrazas/dotmarks-api:1 .
 # run: docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
 # docker run -d -v /var/sockets:/var/sockets --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
-# docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/logs/dotmarks:/var/log \
-#       --link mongodb:mongodb --link dotmarks:redis --name dotmarks-api ipedrazas/dotmarks-api:1
+# docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
+       --link mongodb:mongodb --link dotmarks:redis --name dotmarks-api ipedrazas/dotmarks-api:1
 #
 # docker run -a stdin -a stdout -a stderr -i -t ipedrazas/dotmarks-api:1 /bin/bash
 ############################################################

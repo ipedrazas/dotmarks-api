@@ -49,6 +49,13 @@ First we build our image, from the project folder we execute
 
     docker build -t ipedrazas/dotmarks-api:1 .
 
+Before running, make sure you have these directories created:
+
+    sudo mkdir -p /data/redis
+    sudo mkdir -p /data/mongodb
+    sudo mkdir -p  /var/sockets
+    sudo mkdir -p  /var/log/containers/dotmarks-api
+
 Then, to run it, we will have to do
 
     docker run -it --rm --link mongodb:mongodb -p 5000:5000 dotmarks-api:1
@@ -56,7 +63,10 @@ Then, to run it, we will have to do
 
 If you want to run it as a daemon or dettached, use the following command
 
-    docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
+    # docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
+
+    docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
+           --link mongodb:mongodb --link dotmarks-redis:redis --name dotmarks-api ipedrazas/dotmarks-api:1
 
 
   [1]: http://python-eve.org/
