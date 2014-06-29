@@ -23,7 +23,7 @@ Pull and run Mongodb Image:
 
 To run MongoDB with a persistent directory, use:
 
-    mkdir /data/mongod
+    sudo mkdir -p /data/mongod
     docker run -d -p 27017:27017 -v /data/mongodb:/data/db \
         --name mongodb dockerfile/mongodb mongod
 
@@ -40,7 +40,7 @@ To have a mongo console, you can run the following command:
 
 First we build our image, from the project folder we execute
 
-    docker build -t dotmarks-api:1 .
+    docker build -t ipedrazas/dotmarks-api:1 .
 
 Then, to run it, we will have to do
 
@@ -49,7 +49,7 @@ Then, to run it, we will have to do
 
 If you want to run it as a daemon or dettached, use the following command
 
-    docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api dotmarks-api:1
+    docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
 
 
   [1]: http://python-eve.org/

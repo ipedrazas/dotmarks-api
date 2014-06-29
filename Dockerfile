@@ -6,7 +6,6 @@
 # Set the base image to Ubuntu
 FROM ubuntu
 
-# File Author / Maintainer
 MAINTAINER Ivan Pedrazas <ivan@pedrazas.me>
 
 RUN apt-get update && apt-get install -y build-essential python-setuptools python-pip python-dev

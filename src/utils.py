@@ -84,7 +84,7 @@ def tags_by_url(url):
 
 def tag_title(title):
     if title:
-        print ("tagging " + title)
+        print ("tagging " + title.utf8())
         tokens = title.lower().split()
         print str(tokens)
         results = db.atags.find({'keywords': {'$in': tokens}}, {'tag': 1})
