@@ -2,7 +2,6 @@ from urllib2 import Request, urlopen, URLError
 from BeautifulSoup import BeautifulSoup
 from datetime import datetime
 from urlparse import urlparse
-from constants import LAST_UPDATED
 from celery.utils.log import get_task_logger
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -11,6 +10,7 @@ from bson.objectid import ObjectId
 logger = get_task_logger(__name__)
 client = MongoClient('mongodb://localhost:27017/')
 db = client.eve
+LAST_UPDATED = '_updated'
 
 
 def get_date():

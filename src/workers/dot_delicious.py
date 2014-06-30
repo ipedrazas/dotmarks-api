@@ -3,7 +3,6 @@ from bson.objectid import ObjectId
 import gridfs
 from BeautifulSoup import BeautifulSoup, SoupStrainer
 from dot_utils import get_title_from_url, get_date
-from constants import LAST_UPDATED
 
 
 client = MongoClient('mongodb://localhost:27017/')
@@ -11,6 +10,8 @@ db = client.eve
 fs = gridfs.GridFS(db)
 dks = db.dotmarks
 users = db.users
+
+LAST_UPDATED = '_updated'
 
 
 def parse_html(oid):
