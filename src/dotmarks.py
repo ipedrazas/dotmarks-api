@@ -1,22 +1,23 @@
 from eve import Eve
 import os
-from utils import populate_dotmark, parse_log, process_attachment
+# from utils import populate_dotmark, parse_log, process_attachment
+from workers.postworkers import populate_dotmark, parse_log, process_attachment
 
 
 def after_insert_dotmark(items):
     for item in items:
-        populate_dotmark(item)
+        populate_dotmark.delay(item)
 
 
 def after_insert_log(items):
     print str(items)
     for item in items:
-        parse_log(item)
+        parse_log.delay(item)
 
 
 def after_inserting_atachment(items):
     for item in items:
-        process_attachment(item)
+        process_attachment.delay(item)
 
 
 #

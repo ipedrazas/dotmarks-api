@@ -1,9 +1,9 @@
-from flask import Flask
+
 from celery import Celery
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from dot_delicious import parse_html
-from dot_utils import get_date, get_title_from_url, get_hash, do_update
+from dot_utils import get_date, get_title_from_url, do_update
 from dot_utils import auto_tag
 from celery.utils.log import get_task_logger
 import os
@@ -26,29 +26,12 @@ client = MongoClient(MONGO_URL)
 db = client.eve
 
 
-def make_celery(app):
-    celery = Celery('dotmarks', broker=app.config['CELERY_BROKER_URL'])
-    celery.conf.update(app.config)
-    TaskBase = celery.Task
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
+REDIS_PORT = os.environ.get('REDIS_PORT_6379_TCP_PORT')
 
-    class ContextTask(TaskBase):
-        abstract = True
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return TaskBase.__call__(self, *args, **kwargs)
-    celery.Task = ContextTask
-    return celery
-
-
-flask_app = Flask(__name__)
-
-
-flask_app.config.update(
-    CELERY_BROKER_URL=CELERY_URL,
-    CELERY_RESULT_BACKEND=CELERY_URL
-)
-celery = make_celery(flask_app)
+celery = Celery('dotmarks', broker=CELERY_BROKER_URL)
 
 
 @celery.task()
@@ -87,36 +70,3 @@ def populate_dotmark(item):
 
         if updates:
             do_update(item['_id'], updates)
-
-
-@celery.task()
-def send_mail_password_reset(email):
-    user = db.users.find_one({'email': email})
-    if user:
-        hashlink = get_hash(email)
-        create_reset_mail_object(email, str(hashlink))
-        updates = {
-            RESET_PASSWORD_DATE: get_date(),
-            RESET_PASSWORD_HASH: get_date(),
-            LAST_UPDATED: get_date()
-        }
-        db.users.update(
-            {'_id': ObjectId(user['_id'])},
-            {"$inc": {"r": 1}, "$set": updates},
-            upsert=False)
-    else:
-        logger.error("no user found with email: " + email)
-
-
-@celery.task()
-def post_login(item):
-    if 'username' in item:
-        updates = {
-            RESET_PASSWORD_DATE: None,
-            RESET_PASSWORD_HASH: None,
-            LAST_UPDATED: get_date()
-        }
-        db.users.update(
-            {'username': item['username']},
-            {"$set": updates},
-            upsert=False)
