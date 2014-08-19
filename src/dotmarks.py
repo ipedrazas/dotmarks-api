@@ -1,7 +1,7 @@
 from eve import Eve
 import os
 # from utils import populate_dotmark, parse_log, process_attachment
-from workers.postworkers import populate_dotmark, parse_log, process_attachment
+from workers.postworker import populate_dotmark, parse_log, process_attachment
 
 
 def after_insert_dotmark(items):

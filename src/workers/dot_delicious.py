@@ -3,9 +3,16 @@ from bson.objectid import ObjectId
 import gridfs
 from BeautifulSoup import BeautifulSoup, SoupStrainer
 from dot_utils import get_title_from_url, get_date
+import os
 
 
-client = MongoClient('mongodb://localhost:27017/')
+mongo_host = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
+mongo_port = os.environ.get('MONGODB_PORT_27017_TCP_PORT')
+MONGO_URL = 'mongodb://' + mongo_host + ":" + mongo_port + '/'
+
+client = MongoClient(MONGO_URL)
+
+
 db = client.eve
 fs = gridfs.GridFS(db)
 dks = db.dotmarks
