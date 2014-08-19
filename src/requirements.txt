@@ -2,7 +2,6 @@ BeautifulSoup
 Eve
 celery
 pymongo
-gunicorn
 redis
 urllib3
-
+gunicorn
