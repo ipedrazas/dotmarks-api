@@ -23,12 +23,12 @@ MAINTAINER Ivan Pedrazas <ivan@pedrazas.me>
 RUN apt-get update && apt-get install -y build-essential python-setuptools python-pip python-dev
 
 
-ADD ../../src/requirements.txt /src/requirements.txt
+# Bundle app source
+ADD src /src
+
 RUN cd /src; pip install -r requirements.txt
 RUN mkdir -p /var/sockets
 
-# Bundle app source
-ADD ../../src /src
 
 # Expose
 EXPOSE  5000

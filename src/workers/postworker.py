@@ -13,21 +13,18 @@ LAST_UPDATED = '_updated'
 
 logger = get_task_logger(__name__)
 
-celery_host = os.environ.get('REDIS_PORT_6379_TCP_ADDR'),
-celery_port = os.environ.get('REDIS_PORT_6379_TCP_PORT')
 
 mongo_host = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
 mongo_port = os.environ.get('MONGODB_PORT_27017_TCP_PORT')
 
-CELERY_URL = 'redis://localhost:6379'
 MONGO_URL = 'mongodb://' + mongo_host + ':' + mongo_port + '/'
 
 client = MongoClient(MONGO_URL)
 db = client.eve
 
 
-REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
-REDIS_PORT = os.environ.get('REDIS_PORT_6379_TCP_PORT')
+REDIS_HOST = os.environ.get('REDIS_PORT_6380_TCP_ADDR')
+REDIS_PORT = os.environ.get('REDIS_PORT_6380_TCP_PORT')
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 

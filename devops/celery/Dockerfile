@@ -15,7 +15,7 @@ RUN apt-get clean && rm -rf /var/cache/apt/*
 
 RUN groupadd -r celery && useradd -r -g celery celery
 
-ADD ../../src /code
+ADD src /code
 RUN cd /code; pip install -r requirements.txt
 
 
