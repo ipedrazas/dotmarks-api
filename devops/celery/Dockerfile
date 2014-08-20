@@ -27,4 +27,4 @@ CMD su -p celery -c "/usr/local/bin/celery -A workers.postworker worker --loglev
 
 
 # docker build -t ipedrazas/dotmarks-celery .
-# docker run -it --rm --link mongodb:mongodb -v /var/log/containers/dotmarks-celery:/log ipedrazas/dotmarks-celery
+# docker run -it --rm --link mongodb:mongodb --link redis:redis -v /var/log/containers/dotmarks-celery:/log ipedrazas/dotmarks-celery

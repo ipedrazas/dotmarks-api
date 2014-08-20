@@ -23,8 +23,8 @@ client = MongoClient(MONGO_URL)
 db = client.eve
 
 
-REDIS_HOST = os.environ.get('REDIS_PORT_6380_TCP_ADDR')
-REDIS_PORT = os.environ.get('REDIS_PORT_6380_TCP_PORT')
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
+REDIS_PORT = os.environ.get('REDIS_PORT_6379_TCP_PORT')
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 
