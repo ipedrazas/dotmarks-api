@@ -35,11 +35,6 @@ ADD src /src
 # Expose
 EXPOSE  5000
 
-# Run
-#CMD /usr/bin/supervisord -n
-
-#CMD /usr/local/bin/gunicorn --debug --config /src/gunicorn.conf.py dotmarks:app
-
 
 CMD cd /src && python dotmarks.py
 
