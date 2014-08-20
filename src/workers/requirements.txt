@@ -1,5 +1,0 @@
-BeautifulSoup
-celery
-pymongo
-redis
-urllib3

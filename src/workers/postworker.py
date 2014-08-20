@@ -19,11 +19,8 @@ celery_port = os.environ.get('REDIS_PORT_6379_TCP_PORT')
 mongo_host = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
 mongo_port = os.environ.get('MONGODB_PORT_27017_TCP_PORT')
 
-print str(celery_host[0])
-print str(celery_port[0])
-
-CELERY_URL = 'redis://' + celery_host[0] + ":" + celery_port
-MONGO_URL = 'mongodb://' + mongo_host + ":" + mongo_port + '/'
+CELERY_URL = 'redis://localhost:6379'
+MONGO_URL = 'mongodb://' + mongo_host + ':' + mongo_port + '/'
 
 client = MongoClient(MONGO_URL)
 db = client.eve
