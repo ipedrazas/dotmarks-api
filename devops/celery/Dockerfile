@@ -18,7 +18,6 @@ RUN groupadd -r celery && useradd -r -g celery celery
 ADD src /code
 RUN cd /code; pip install -r requirements.txt
 
-
 VOLUME  ["/log", "/code"]
 
 WORKDIR /code
