@@ -78,6 +78,9 @@ logs = {
 
 history = {
     'schema': {
+        'user': {
+            'type': 'string'
+        },
         'url': {
             'type': 'string',
             'minlength': 7,
@@ -87,8 +90,8 @@ history = {
         'title': {
             'type': 'string'
         },
-        'timestamp': {
-            'type': 'date'
+        'vtime': {
+            'type': 'number'
         }
     }
 }
