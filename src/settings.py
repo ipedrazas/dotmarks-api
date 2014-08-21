@@ -76,6 +76,22 @@ logs = {
     }
 }
 
+history = {
+    'schema': {
+        'url': {
+            'type': 'string',
+            'minlength': 7,
+            'required': True,
+            # 'unique': True,
+        },
+        'title': {
+            'type': 'string'
+        },
+        'timestamp': {
+            'type': 'date'
+        }
+    }
+}
 
 dotmarks = {
     'public_methods': ['GET'],
