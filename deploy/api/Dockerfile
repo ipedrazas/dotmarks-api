@@ -5,11 +5,10 @@
 # build: docker build -t ipedrazas/dotmarks-api:2 .
 # run: docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
 # run: docker run -d -p 5001:5000 --link mongodb:mongodb --link redis:redis --name dotmarks-api2 ipedrazas/dotmarks-api:2
-# docker run -d -v /var/sockets:/var/sockets --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
-# docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
-#       --link mongodb:mongodb --link dotmarks:redis --name dotmarks-api ipedrazas/dotmarks-api:1
 #
-# docker run -a stdin -a stdout -a stderr -i -t ipedrazas/dotmarks-api:1 /bin/bash
+# docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
+#       --link mongodb:mongodb --link redis:redis --name dotmarks-api ipedrazas/dotmarks-api
+#
 ############################################################
 
 # Set the base image to Ubuntu
@@ -33,7 +32,10 @@ RUN mkdir -p /var/sockets
 # Expose
 EXPOSE  5000
 
+WORKDIR /src
 
-CMD cd /src && python dotmarks.py
+#CMD python dotmarks.py
 
 # exec /usr/local/bin/gunicorn api.wsgi -w 1 -b 0.0.0.0:8005 --log-level=debug
+
+CMD /usr/local/bin/gunicorn --config /src/gunicorn.conf.py  dotmarks:app
