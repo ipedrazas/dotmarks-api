@@ -36,3 +36,4 @@ EXPOSE  5000
 
 CMD cd /src && python dotmarks.py
 
+# exec /usr/local/bin/gunicorn api.wsgi -w 1 -b 0.0.0.0:8005 --log-level=debug

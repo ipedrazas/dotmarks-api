@@ -1,0 +1,7 @@
+BeautifulSoup
+Eve
+celery
+pymongo
+redis
+urllib3
+gunicorn
