@@ -22,9 +22,22 @@ VOLUME  ["/log", "/code"]
 
 WORKDIR /code
 
-CMD su -p celery -c "/usr/local/bin/celery -A workers.postworker worker --loglevel=info --workdir=/code --logfile="/log/%n.log"
+RUN chown celery.celery /log
+USER celery
+
+CMD /usr/local/bin/celery -A workers.postworker worker --loglevel=info --workdir=/code --logfile=/log/%n.log
+
+
+
 
 
 # docker build -t ipedrazas/dotmarks-celery .
+
+
+
+# docker run -d -p 6379:6379 -v /data/redis:/data --name redis dockerfile/redis
+# docker run -d -p 27017:27017 -v /data/mongodb:/data/db  --name mongodb dockerfile/mongodb mongod
 # docker run -it --rm --link mongodb:mongodb --link redis:redis -v /var/log/containers/dotmarks-celery:/log ipedrazas/dotmarks-celery
+
+
 # docker run -d --link mongodb:mongodb --link redis:redis -v /var/log/containers/dotmarks-celery:/log ipedrazas/dotmarks-celery
