@@ -3,8 +3,7 @@
 # Based on Ubuntu
 #
 # build: docker build -t ipedrazas/dotmarks-api:2 .
-# run: docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
-# run: docker run -d -p 5001:5000 --link mongodb:mongodb --link redis:redis --name dotmarks-api2 ipedrazas/dotmarks-api
+# run: docker run -d -p 5001:5000 --link mongodb:mongodb --link redis:redis --name dotmarks-api ipedrazas/dotmarks-api
 #
 # docker run -d -p 6379:6379 -v /data/redis:/data --name redis dockerfile/redis
 # docker run -d -p 27017:27017 -v /data/mongodb:/data/db  --name mongodb dockerfile/mongodb mongod
@@ -38,4 +37,6 @@ WORKDIR /src
 
 # exec /usr/local/bin/gunicorn api.wsgi -w 1 -b 0.0.0.0:8005 --log-level=debug
 
-CMD /usr/local/bin/gunicorn --config /src/gunicorn.conf.py  dotmarks:app
+#CMD /usr/local/bin/gunicorn --config gunicorn.conf.py  dotmarks:app
+#CMD /usr/local/bin/gunicorn --config gunicorn.conf.py  dotmarks:app
+CMD /usr/local/bin/gunicorn -w 4 -b 0.0.0.0:5000  dotmarks:app

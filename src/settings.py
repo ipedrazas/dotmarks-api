@@ -85,7 +85,6 @@ history = {
             'type': 'string',
             'minlength': 7,
             'required': True,
-            # 'unique': True,
         },
         'title': {
             'type': 'string'
@@ -159,4 +158,5 @@ DOMAIN = {
     'logs': logs,
     'atags': atags,
     'attachments': attachments,
+    'history': history,
 }
