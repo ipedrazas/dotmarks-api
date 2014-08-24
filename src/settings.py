@@ -76,6 +76,8 @@ logs = {
     }
 }
 
+# TODO: if URL + vtime are in DB, not store
+
 history = {
     'schema': {
         'user': {
