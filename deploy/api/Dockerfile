@@ -35,8 +35,4 @@ EXPOSE  5000
 
 WORKDIR /src
 
-# exec /usr/local/bin/gunicorn api.wsgi -w 1 -b 0.0.0.0:8005 --log-level=debug
-
-#CMD /usr/local/bin/gunicorn --config gunicorn.conf.py  dotmarks:app
-#CMD /usr/local/bin/gunicorn --config gunicorn.conf.py  dotmarks:app
 CMD /usr/local/bin/gunicorn -w 4 -b 0.0.0.0:5000  dotmarks:app
