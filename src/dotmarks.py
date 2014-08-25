@@ -2,6 +2,7 @@ from eve import Eve
 import os
 # from utils import populate_dotmark, parse_log, process_attachment
 from workers.postworker import populate_dotmark, parse_log, process_attachment
+from flask import jsonify
 
 
 def after_insert_dotmark(items):
@@ -39,5 +40,11 @@ def version():
     return '.dotMarks v0.0.1a'
 
 
+@app.route("/tags")
+def get_all_tags():
+    dotMarks = app.data.driver.db['dotmarks']
+    return jsonify(dotMarks.distinct('tags'))
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
