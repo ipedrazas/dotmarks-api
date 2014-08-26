@@ -137,6 +137,14 @@ dotmarks = {
     }
 }
 
+tags = {
+    'schema': {
+        'value': {
+            'type': 'integer'
+        }
+    }
+}
+
 atags = {
     'schema': {
         'tag': {
@@ -161,4 +169,5 @@ DOMAIN = {
     'atags': atags,
     'attachments': attachments,
     'history': history,
+    'tags': tags,
 }
