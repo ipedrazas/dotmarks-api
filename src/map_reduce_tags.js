@@ -20,4 +20,4 @@ var reduce = function( key, values ) {
 
 
 
-db.dotmarks.mapReduce(map, reduce, {out: "tag_count"})
+db.dotmarks.mapReduce(map, reduce, {out: "tags"})
