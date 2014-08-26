@@ -40,6 +40,10 @@ def version():
     return '.dotMarks v0.0.1a'
 
 
+#
+# TODO: write a M/R job that creates a Tags collection
+# with {tag: DevOps, times: 5}
+#
 @app.route("/tags")
 def get_all_tags():
     dotMarks = app.data.driver.db['dotmarks']
