@@ -80,6 +80,38 @@ logs = {
 
 history = {
     'schema': {
+        'time': {
+            'type': 'dict',
+            'schema': {
+                'day': {
+                    'type': 'number'
+                },
+                'hours': {
+                    'type': 'number'
+                },
+                'minutes': {
+                    'type': 'number'
+                },
+                'month': {
+                    'type': 'number'
+                },
+                'seconds': {
+                    'type': 'number'
+                },
+                'time': {
+                    'type': 'datetime'
+                },
+                'vtime': {
+                    'type': 'number'
+                },
+                'weekday': {
+                    'type': 'number'
+                },
+                'year': {
+                    'type': 'number'
+                }
+            },
+        },
         'user': {
             'type': 'string'
         },
@@ -91,7 +123,13 @@ history = {
         'title': {
             'type': 'string'
         },
-        'vtime': {
+        'typedCount': {
+            'type': 'number'
+        },
+        'visitCount': {
+            'type': 'number'
+        },
+        'visitNumber': {
             'type': 'number'
         }
     }
