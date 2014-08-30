@@ -101,6 +101,15 @@ history = {
                 'time': {
                     'type': 'datetime'
                 },
+                'transition': {
+                    'type': 'string'
+                },
+                'visitId': {
+                    'type': 'string'
+                },
+                'visitTime': {
+                    'type': 'number'
+                },
                 'vtime': {
                     'type': 'number'
                 },
@@ -130,6 +139,9 @@ history = {
             'type': 'number'
         },
         'visitNumber': {
+            'type': 'number'
+        },
+        'referringVisitId': {
             'type': 'number'
         }
     }
