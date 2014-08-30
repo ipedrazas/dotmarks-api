@@ -83,7 +83,7 @@ history = {
         'time': {
             'type': 'dict',
             'schema': {
-                'vid': {
+                'id': {
                     'type': 'string'
                 },
                 'day': {
@@ -108,6 +108,9 @@ history = {
                     'type': 'string'
                 },
                 'referringVisitId': {
+                    'type': 'string'
+                },
+                'visitId': {
                     'type': 'string'
                 },
                 'visitTime': {
