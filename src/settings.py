@@ -83,6 +83,9 @@ history = {
         'time': {
             'type': 'dict',
             'schema': {
+                'vid': {
+                    'type': 'string'
+                },
                 'day': {
                     'type': 'number'
                 },
@@ -99,12 +102,12 @@ history = {
                     'type': 'number'
                 },
                 'time': {
-                    'type': 'datetime'
+                    'type': 'string'
                 },
                 'transition': {
                     'type': 'string'
                 },
-                'visitId': {
+                'referringVisitId': {
                     'type': 'string'
                 },
                 'visitTime': {
@@ -142,7 +145,13 @@ history = {
             'type': 'number'
         },
         'referringVisitId': {
-            'type': 'number'
+            'type': 'string'
+        },
+        'transition': {
+            'type': 'string'
+        },
+        'vid': {
+            'type': 'string'
         }
     }
 }
