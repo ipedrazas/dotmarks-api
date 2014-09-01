@@ -283,7 +283,7 @@ analytics_days = {
     }
 }
 
-analytics_months = {
+analytics_hours = {
     'url': 'analytics/months',
     'schema': {
         '_id': {
@@ -292,7 +292,7 @@ analytics_months = {
                 'user': {
                     'type': 'string'
                 },
-                'month': {
+                'hour': {
                     'type': 'integer'
                 }
             }
@@ -313,7 +313,7 @@ DOMAIN = {
     'history': history,
     'tags': tags,
     'analytics_domain': analytics_domain,
-    'analytics_months': analytics_months,
+    'analytics_hours': analytics_hours,
     'analytics_days': analytics_days,
     'analytics_weekdays': analytics_weekdays,
 }
