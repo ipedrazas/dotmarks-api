@@ -19,7 +19,7 @@ var reduceHistoryByDayPerUser = function( key, values ) {
 
 
 
-db.history.mapReduce(mapHistoryByDayPerUser, reduceHistoryByDayPerUser, {out: "per_day"});
+db.history.mapReduce(mapHistoryByDayPerUser, reduceHistoryByDayPerUser, {out: "analytics_days"});
 
 
 // MapReduce to extract counts by day
@@ -43,7 +43,7 @@ var reduceHistoryByHoursPerUser = function( key, values ) {
 
 
 
-db.history.mapReduce(mapHistoryByHoursPerUser, reduceHistoryByHoursPerUser, {out: "per_hours"});
+db.history.mapReduce(mapHistoryByHoursPerUser, reduceHistoryByHoursPerUser, {out: "analytics_hours"});
 
 
 // MapReduce to extract counts per weekday
@@ -67,7 +67,7 @@ var reduceHistoryPerWeekdayPerUser = function( key, values ) {
 
 
 
-db.history.mapReduce(mapHistoryPerWeekdayPerUser, reduceHistoryPerWeekdayPerUser, {out: "per_weekday"});
+db.history.mapReduce(mapHistoryPerWeekdayPerUser, reduceHistoryPerWeekdayPerUser, {out: "analytics_weekdays"});
 
 
 
@@ -93,7 +93,7 @@ var mapHistoryPerDomainPerUser = function() {
         url: cleanUp(this.url),
         user: this.user
     };
-    emit(cleanUp(key, 1); // store a 1 for each word
+    emit(key, 1); // store a 1 for each word
 
 };
 
@@ -108,5 +108,6 @@ var reduceHistoryPerDomainPerUser = function( key, values ) {
 
 
 
-db.history.mapReduce(mapHistoryPerDomainPerUser, reduceHistoryPerDomainPerUser, {out: "per_domain"});
+db.history.mapReduce(mapHistoryPerDomainPerUser, reduceHistoryPerDomainPerUser, {out: "analytics_domain"});
 
+db.analytics_domain.find({"_id.user": "ivan"}).count();

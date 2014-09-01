@@ -232,4 +232,8 @@ DOMAIN = {
     'attachments': attachments,
     'history': history,
     'tags': tags,
+    'analytics-domain': {},
+    'analytics-hours': {},
+    'analytics-days': {},
+    'analytics-weekdays': {},
 }
