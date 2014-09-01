@@ -108,6 +108,6 @@ var reduceHistoryPerDomainPerUser = function( key, values ) {
 
 
 
-db.history.mapReduce(mapHistoryPerDomainPerUser, reduceHistoryPerDomainPerUser, {out: "analytics_domain"});
+db.history.mapReduce(mapHistoryPerDomainPerUser, reduceHistoryPerDomainPerUser, {out: "analytics_domains"});
 
 db.analytics_domain.find({"_id.user": "ivan"}).count();

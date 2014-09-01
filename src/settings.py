@@ -127,6 +127,9 @@ history = {
                 }
             },
         },
+        'search': {
+            'type': 'list'
+        },
         'user': {
             'type': 'string'
         },
@@ -223,8 +226,8 @@ atags = {
     }
 }
 
-analytics_domain = {
-    'url': 'analytics/domain',
+analytics_domains = {
+    'url': 'analytics/domains',
     'schema': {
         '_id': {
             'type': 'dict',
