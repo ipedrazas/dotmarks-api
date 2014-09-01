@@ -223,7 +223,8 @@ atags = {
     }
 }
 
-adomain = {
+analytics_domain = {
+    'url': 'analytics/domain',
     'schema': {
         '_id': {
             'type': 'dict',
@@ -242,6 +243,66 @@ adomain = {
     }
 }
 
+analytics_weekdays = {
+    'url': 'analytics/weekdays',
+    'schema': {
+        '_id': {
+            'type': 'dict',
+            'schema': {
+                'user': {
+                    'type': 'string'
+                },
+                'weekdays': {
+                    'type': 'integer'
+                }
+            }
+        },
+        'value': {
+            'type': 'integer'
+        }
+    }
+}
+
+analytics_days = {
+    'url': 'analytics/days',
+    'schema': {
+        '_id': {
+            'type': 'dict',
+            'schema': {
+                'user': {
+                    'type': 'string'
+                },
+                'day': {
+                    'type': 'integer'
+                }
+            }
+        },
+        'value': {
+            'type': 'integer'
+        }
+    }
+}
+
+analytics_months = {
+    'url': 'analytics/months',
+    'schema': {
+        '_id': {
+            'type': 'dict',
+            'schema': {
+                'user': {
+                    'type': 'string'
+                },
+                'month': {
+                    'type': 'integer'
+                }
+            }
+        },
+        'value': {
+            'type': 'integer'
+        }
+    }
+}
+
 # The DOMAIN dict explains which resources will be available and how they will
 # be accessible to the API consumer.
 DOMAIN = {
@@ -251,6 +312,8 @@ DOMAIN = {
     'attachments': attachments,
     'history': history,
     'tags': tags,
-    'analytics-domain': adomain,
-
+    'analytics_domain': analytics_domain,
+    'analytics_months': analytics_months,
+    'analytics_days': analytics_days,
+    'analytics_weekdays': analytics_weekdays,
 }
