@@ -110,4 +110,32 @@ var reduceHistoryPerDomainPerUser = function( key, values ) {
 
 db.history.mapReduce(mapHistoryPerDomainPerUser, reduceHistoryPerDomainPerUser, {out: "analytics_domains"});
 
-db.analytics_domain.find({"_id.user": "ivan"}).count();
+
+# Search Terms
+var mapSearchTerms = function() {
+    var search = this.search;
+    if (search) {
+        for (var i = search.length - 1; i >= 0; i--) {
+            if (search[i])  {
+                var key = {
+                    searchTerm: search[i].toLowerCase(),
+                    user: this.user
+                };
+               emit(key, 1); // store a 1 for each word
+            }
+        }
+    }
+};
+
+
+var reduceSearchTerms = function( key, values ) {
+    var count = 0;
+    values.forEach(function(v) {
+        count +=v;
+    });
+    return count;
+};
+
+
+
+db.dotmarks.mapReduce(mapSearchTerms, reduceSearchTerms, {out: "analytics_search_terms"})
