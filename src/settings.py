@@ -223,6 +223,25 @@ atags = {
     }
 }
 
+adomain = {
+    'schema': {
+        '_id': {
+            'type': 'dict',
+            'schema': {
+                'user': {
+                    'type': 'string'
+                },
+                'url': {
+                    'type': 'string'
+                }
+            }
+        },
+        'value': {
+            'type': 'integer'
+        }
+    }
+}
+
 # The DOMAIN dict explains which resources will be available and how they will
 # be accessible to the API consumer.
 DOMAIN = {
@@ -232,8 +251,6 @@ DOMAIN = {
     'attachments': attachments,
     'history': history,
     'tags': tags,
-    'analytics-domain': {},
-    'analytics-hours': {},
-    'analytics-days': {},
-    'analytics-weekdays': {},
+    'analytics-domain': adomain,
+
 }
