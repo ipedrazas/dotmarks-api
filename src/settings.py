@@ -284,7 +284,7 @@ analytics_days = {
 }
 
 analytics_hours = {
-    'url': 'analytics/months',
+    'url': 'analytics/hours',
     'schema': {
         '_id': {
             'type': 'dict',
