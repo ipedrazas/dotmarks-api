@@ -315,7 +315,7 @@ DOMAIN = {
     'attachments': attachments,
     'history': history,
     'tags': tags,
-    'analytics_domain': analytics_domain,
+    'analytics_domains': analytics_domains,
     'analytics_hours': analytics_hours,
     'analytics_days': analytics_days,
     'analytics_weekdays': analytics_weekdays,
