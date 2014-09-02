@@ -5,6 +5,8 @@ SRC="src"
 API="deploy/api"
 CELERY="deploy/celery"
 
+git pull
+
 if [ "api" == $TARGET ]; then
 	echo "Building API"
 	cd $API

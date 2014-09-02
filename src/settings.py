@@ -133,6 +133,11 @@ history = {
         'user': {
             'type': 'string'
         },
+        'id': {
+            'type': 'string',
+            'unique': True,
+            'required': True
+        },
         'url': {
             'type': 'string',
             'minlength': 7,
