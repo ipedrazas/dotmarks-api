@@ -2,7 +2,7 @@ from eve import Eve
 import os
 # from utils import populate_dotmark, parse_log, process_attachment
 from workers.postworker import populate_dotmark, parse_log, process_attachment
-from flask import jsonify
+from flask import jsonify, abort
 
 
 def after_insert_dotmark(items):
@@ -48,6 +48,16 @@ def version():
 def get_all_tags():
     dotMarks = app.data.driver.db['dotmarks']
     return jsonify(dotMarks.distinct('tags'))
+
+
+@app.route("/analitics/hours/<username>")
+def analytics_per_hour(username=None):
+    if username:
+        match = {"$match": {"user": username}}
+        group = {"$group": {"_id": "$time.hours", "count": {"$sum": 1}}}
+        history = app.data.driver.db['history']
+        return jsonify(history.aggregate([match, group]))
+    abort(404)
 
 
 if __name__ == '__main__':

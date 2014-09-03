@@ -1,4 +1,4 @@
-var map = function() {
+var mapTags = function() {
     var tags = this.tags;
     if (tags) {
         for (var i = tags.length - 1; i >= 0; i--) {
@@ -10,7 +10,7 @@ var map = function() {
 };
 
 
-var reduce = function( key, values ) {
+var reduceTags = function( key, values ) {
     var count = 0;
     values.forEach(function(v) {
         count +=v;
@@ -20,4 +20,4 @@ var reduce = function( key, values ) {
 
 
 
-db.dotmarks.mapReduce(map, reduce, {out: "tags"})
+db.dotmarks.mapReduce(mapTags, reduceTags, {out: "tags"})
