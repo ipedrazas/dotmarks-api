@@ -145,8 +145,6 @@ history = {
         },
         'domain': {
             'type': 'string',
-            'minlength': 7,
-            'required': True,
         },
         'title': {
             'type': 'string'
