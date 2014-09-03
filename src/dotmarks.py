@@ -50,11 +50,41 @@ def get_all_tags():
     return jsonify(dotMarks.distinct('tags'))
 
 
-@app.route("/analitics/hours/<username>")
+@app.route("/analytics/hours/<username>")
 def analytics_per_hour(username=None):
     if username:
         match = {"$match": {"user": username}}
         group = {"$group": {"_id": "$time.hours", "count": {"$sum": 1}}}
+        history = app.data.driver.db['history']
+        return jsonify(history.aggregate([match, group]))
+    abort(404)
+
+
+@app.route("/analytics/days/<username>")
+def analytics_per_day(username=None):
+    if username:
+        match = {"$match": {"user": username}}
+        group = {"$group": {"_id": "$time.days", "count": {"$sum": 1}}}
+        history = app.data.driver.db['history']
+        return jsonify(history.aggregate([match, group]))
+    abort(404)
+
+
+@app.route("/analytics/weekdays/<username>")
+def analytics_per_weekday(username=None):
+    if username:
+        match = {"$match": {"user": username}}
+        group = {"$group": {"_id": "$time.weekday", "count": {"$sum": 1}}}
+        history = app.data.driver.db['history']
+        return jsonify(history.aggregate([match, group]))
+    abort(404)
+
+
+@app.route("/analytics/domains/<username>")
+def analytics_per_domain(username=None):
+    if username:
+        match = {"$match": {"user": username}}
+        group = {"$group": {"_id": "domain", "count": {"$sum": 1}}}
         history = app.data.driver.db['history']
         return jsonify(history.aggregate([match, group]))
     abort(404)
