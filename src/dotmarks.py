@@ -84,9 +84,10 @@ def analytics_per_weekday(username=None):
 def analytics_per_domain(username=None):
     if username:
         match = {"$match": {"user": username}}
-        group = {"$group": {"_id": "domain", "count": {"$sum": 1}}}
+        group = {"$group": {"_id": "$domain", "count": {"$sum": 1}}}
+        sort = {"$sort": {"count": -1}}
         history = app.data.driver.db['history']
-        return jsonify(history.aggregate([match, group]))
+        return jsonify(history.aggregate([match, group, sort]))
     abort(404)
 
 
