@@ -232,7 +232,7 @@ atags = {
 }
 
 analytics_domains = {
-    'url': 'analytics/domains',
+    'url': 'mr/domains',
     'schema': {
         '_id': {
             'type': 'dict',
@@ -252,7 +252,7 @@ analytics_domains = {
 }
 
 analytics_weekdays = {
-    'url': 'analytics/weekdays',
+    'url': 'mr/weekdays',
     'schema': {
         '_id': {
             'type': 'dict',
@@ -272,7 +272,7 @@ analytics_weekdays = {
 }
 
 analytics_days = {
-    'url': 'analytics/days',
+    'url': 'mr/days',
     'schema': {
         '_id': {
             'type': 'dict',
