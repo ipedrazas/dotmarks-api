@@ -48,8 +48,13 @@ def version():
 @app.route("/tags")
 @cors(origin='*')
 def get_all_tags():
-    dotMarks = app.data.driver.db['dotmarks']
-    return jsonify(dotMarks.distinct('tags'))
+    dotmarks = app.data.driver.db['dotmarks']
+    unwind = {"$unwind": "$tags"}
+    group = {"$group": {"_id": "$tags", "count": {"$sum": 1}}}
+    sort = {"$sort": {"count": -1}}
+    limit = {"$limit": 40}
+
+    return jsonify(dotmarks.aggregate([unwind, group, sort, limit]))
 
 
 @app.route("/analytics/hours/<username>")
@@ -100,6 +105,20 @@ def analytics_per_domain(username=None):
         limit = {"$limit": 50}
         history = app.data.driver.db['history']
         return jsonify(history.aggregate([match, group, sort, limit]))
+    abort(404)
+
+
+@app.route("/analytics/searches/<username>")
+@cors(origin='*')
+def analytics_per_search(username=None):
+    if username:
+        history = app.data.driver.db['history']
+        unwind = {"$unwind": "$search"}
+        group = {"$group": {"_id": "$search", "count": {"$sum": 1}}}
+        sort = {"$sort": {"count": -1}}
+        limit = {"$limit": 40}
+
+        return jsonify(history.aggregate([unwind, group, sort, limit]))
     abort(404)
 
 
