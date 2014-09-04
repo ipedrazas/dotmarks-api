@@ -66,6 +66,7 @@ def analytics_per_hour(username=None):
         history = app.data.driver.db['history']
         sort = {"$sort": {"_id": 1}}
         limit = {"$limit": 25}
+
         return jsonify(history.aggregate([match, group, sort, limit]))
     abort(404)
 
@@ -79,6 +80,7 @@ def analytics_per_day(username=None):
         history = app.data.driver.db['history']
         sort = {"$sort": {"_id": 1}}
         limit = {"$limit": 32}
+
         return jsonify(history.aggregate([match, group, sort, limit]))
     abort(404)
 
@@ -91,6 +93,7 @@ def analytics_per_weekday(username=None):
         group = {"$group": {"_id": "$time.weekday", "count": {"$sum": 1}}}
         history = app.data.driver.db['history']
         sort = {"$sort": {"_id": 1}}
+
         return jsonify(history.aggregate([match, group, sort]))
     abort(404)
 
@@ -104,6 +107,7 @@ def analytics_per_domain(username=None):
         sort = {"$sort": {"count": -1}}
         limit = {"$limit": 50}
         history = app.data.driver.db['history']
+
         return jsonify(history.aggregate([match, group, sort, limit]))
     abort(404)
 
