@@ -3,6 +3,7 @@ import os
 # from utils import populate_dotmark, parse_log, process_attachment
 from workers.postworker import populate_dotmark, parse_log, process_attachment
 from flask import jsonify, abort
+from crossdomain import cors
 
 
 def after_insert_dotmark(items):
@@ -45,12 +46,14 @@ def version():
 # with {tag: DevOps, times: 5}
 #
 @app.route("/tags")
+@cors(origin='*')
 def get_all_tags():
     dotMarks = app.data.driver.db['dotmarks']
     return jsonify(dotMarks.distinct('tags'))
 
 
 @app.route("/analytics/hours/<username>")
+@cors(origin='*')
 def analytics_per_hour(username=None):
     if username:
         match = {"$match": {"user": username}}
@@ -63,6 +66,7 @@ def analytics_per_hour(username=None):
 
 
 @app.route("/analytics/days/<username>")
+@cors(origin='*')
 def analytics_per_day(username=None):
     if username:
         match = {"$match": {"user": username}}
@@ -75,6 +79,7 @@ def analytics_per_day(username=None):
 
 
 @app.route("/analytics/weekdays/<username>")
+@cors(origin='*')
 def analytics_per_weekday(username=None):
     if username:
         match = {"$match": {"user": username}}
@@ -86,6 +91,7 @@ def analytics_per_weekday(username=None):
 
 
 @app.route("/analytics/domains/<username>")
+@cors(origin='*')
 def analytics_per_domain(username=None):
     if username:
         match = {"$match": {"user": username}}
