@@ -68,7 +68,8 @@ def analytics_per_day(username=None):
         group = {"$group": {"_id": "$time.day", "count": {"$sum": 1}}}
         history = app.data.driver.db['history']
         sort = {"$sort": {"count": -1}}
-        return jsonify(history.aggregate([match, group, sort]))
+        limit = {"$limit": 32}
+        return jsonify(history.aggregate([match, group, sort, limit]))
     abort(404)
 
 
@@ -89,10 +90,13 @@ def analytics_per_domain(username=None):
         match = {"$match": {"user": username}}
         group = {"$group": {"_id": "$domain", "count": {"$sum": 1}}}
         sort = {"$sort": {"count": -1}}
+        limit = {"$limit": 50}
         history = app.data.driver.db['history']
-        return jsonify(history.aggregate([match, group, sort]))
+        return jsonify(history.aggregate([match, group, sort, limit]))
     abort(404)
 
+
+# db.history.aggregate([{"$match": {"user": "3hToEmGLegIiF1DjgJF2b6L9GQRFrJZW"}}, {"$group": {"_id": "$domain", "count": {"$sum": 1}}}, {"$limit": 50},{"$sort": {"count": -1}}])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
