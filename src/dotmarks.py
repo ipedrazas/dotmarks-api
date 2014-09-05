@@ -38,13 +38,9 @@ app.on_inserted_logs += after_insert_log
 
 @app.route("/version")
 def version():
-    return '.dotMarks v0.0.1a'
+    return '.dotMarks v0.1'
 
 
-#
-# TODO: write a M/R job that creates a Tags collection
-# with {tag: DevOps, times: 5}
-#
 @app.route("/tags")
 @cors(origin='*')
 def get_all_tags():
