@@ -25,7 +25,7 @@ X_DOMAINS = "*"
 X_HEADERS = "Content-Type, Accept, Authorization, X-Requested-With, " \
     " Access-Control-Request-Headers, Access-Control-Allow-Origin, " \
     " Access-Control-Allow-Credentials, X-HTTP-Method-Override, mozSystem, " \
-    " Access-Control-Allow-Methods etag "
+    " Access-Control-Allow-Methods If-Match "
 
 
 AUTH_FIELD = 'username'
