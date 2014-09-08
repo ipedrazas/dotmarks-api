@@ -23,7 +23,7 @@ else
 	exit 0
 fi
 
-CID=$(sudo docker ps | grep "$DOCKERBUILD" | awk '{print $1}')
+CID=$(docker ps | grep "$DOCKERBUILD" | awk '{print $1}')
 echo $CID
 
 if [ -d "$SRC" ]; then
@@ -37,7 +37,7 @@ cp -r ../../src .
 echo ">> Running Docker Build"
 # docker build -t $DOCKERBUILD .
 
-sudo docker build -t $DOCKERBUILD . | tee /tmp/docker_build_result.log
+docker build -t $DOCKERBUILD . | tee /tmp/docker_build_result.log
 RESULT=$(cat /tmp/docker_build_result.log | tail -n 1)
 if [[ "$RESULT" != *Successfully* ]];
 then
@@ -54,7 +54,7 @@ fi
 echo '>> Stopping old container'
 if [ "$CID" != "" ];
 then
-  sudo docker stop $CID
+  docker stop $CID
 fi
 
 if [ "api" == $TARGET ]; then

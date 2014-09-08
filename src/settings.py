@@ -12,7 +12,7 @@ RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
 PUBLIC_METHODS = ['GET']
-PUBLIC_ITEM_METHODS = ['GET']
+PUBLIC_ITEM_METHODS = ['GET', 'PATCH', 'PUT']
 
 # We enable standard client cache directives for all resources exposed by the
 # API. We can always override these global settings later.
@@ -35,7 +35,7 @@ MONGO_QUERY_BLACKLIST = []
 # MONGO_HOST = 'localhost'
 # MONGO_PORT = 27017
 
-IF_MATCH = False
+# IF_MATCH = False
 
 import os
 MONGO_HOST = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
@@ -179,6 +179,9 @@ dotmarks = {
     'schema': {
         # 'public_methods': ['GET'],
         # 'public_item_methods': ['GET'],
+        '_id': {
+            'type': 'string'
+        },
         'url': {
             'type': 'string',
             'minlength': 7,
