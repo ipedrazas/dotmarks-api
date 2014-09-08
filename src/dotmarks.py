@@ -113,12 +113,13 @@ def analytics_per_domain(username=None):
 def analytics_per_search(username=None):
     if username:
         history = app.data.driver.db['history']
+        match = {"$match": {"user": username}}
         unwind = {"$unwind": "$search"}
         group = {"$group": {"_id": "$search", "count": {"$sum": 1}}}
         sort = {"$sort": {"count": -1}}
         limit = {"$limit": 40}
 
-        return jsonify(history.aggregate([unwind, group, sort, limit]))
+        return jsonify(history.aggregate([match, unwind, group, sort, limit]))
     abort(404)
 
 
