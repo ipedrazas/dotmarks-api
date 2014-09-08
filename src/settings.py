@@ -11,7 +11,7 @@ RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 # (defaults to read-only item access).
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
-PUBLIC_METHODS = ['GET']
+PUBLIC_METHODS = ['GET', 'PATCH', 'PUT']
 PUBLIC_ITEM_METHODS = ['GET', 'PATCH', 'PUT']
 
 # We enable standard client cache directives for all resources exposed by the
