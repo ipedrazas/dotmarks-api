@@ -35,6 +35,8 @@ MONGO_QUERY_BLACKLIST = []
 # MONGO_HOST = 'localhost'
 # MONGO_PORT = 27017
 
+IF_MATCH = False
+
 import os
 MONGO_HOST = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
 MONGO_PORT = int(os.environ.get('MONGODB_PORT_27017_TCP_PORT'))
