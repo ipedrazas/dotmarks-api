@@ -28,7 +28,7 @@ X_HEADERS = "Content-Type, Accept, Authorization, X-Requested-With, " \
     " Access-Control-Allow-Methods, If-Match "
 
 
-AUTH_FIELD = 'username'
+# AUTH_FIELD = 'username'
 
 MONGO_QUERY_BLACKLIST = []
 
