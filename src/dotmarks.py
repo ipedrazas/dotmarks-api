@@ -61,7 +61,7 @@ def get_all_tags():
         total += 1
         page += 1
 
-    response = {"total": total, "_items": docs}
+    response = {"total": total, "_items": cursor}
 
     return jsonify(response)
 
