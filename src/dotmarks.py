@@ -55,7 +55,7 @@ def get_all_tags():
     total = 0
     page = 0
     page_size = 40
-    for doc in cursor.result:
+    for doc in cursor:
         if page < page_size:
             docs.append(doc)
         total += 1
