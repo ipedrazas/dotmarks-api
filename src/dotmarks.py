@@ -50,7 +50,12 @@ def get_all_tags():
     sort = {"$sort": {"count": -1}}
     limit = {"$limit": 40}
 
-    return jsonify(dotmarks.aggregate([unwind, group, sort, limit]))
+    results = dotmarks.aggregate([unwind, group, sort, limit], cursor={})
+    count = results.count(with_limit_and_skip=False)
+
+    response = {"total": count, "_items": results}
+
+    return jsonify(response)
 
 
 @app.route("/analytics/hours/<username>")
