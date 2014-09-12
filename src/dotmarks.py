@@ -48,12 +48,20 @@ def get_all_tags():
     unwind = {"$unwind": "$tags"}
     group = {"$group": {"_id": "$tags", "count": {"$sum": 1}}}
     sort = {"$sort": {"count": -1}}
-    limit = {"$limit": 40}
+    # limit = {"$limit": 40}
 
-    cursor = dotmarks.aggregate([unwind, group, sort, limit])
-    count = cursor.count(with_limit_and_skip=False)
+    cursor = dotmarks.aggregate([unwind, group, sort])
+    docs = []
+    total = 0
+    page = 0
+    page_size = 40
+    for doc in cursor:
+        if page < page_size:
+            docs.append(doc)
+        total += 1
+        page += 1
 
-    response = {"total": count, "_items": cursor}
+    response = {"total": total, "_items": docs}
 
     return jsonify(response)
 
