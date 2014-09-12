@@ -50,10 +50,10 @@ def get_all_tags():
     sort = {"$sort": {"count": -1}}
     limit = {"$limit": 40}
 
-    results = dotmarks.aggregate([unwind, group, sort, limit], cursor={})
-    count = results.count(with_limit_and_skip=False)
+    cursor = dotmarks.aggregate([unwind, group, sort, limit])
+    count = cursor.count(with_limit_and_skip=False)
 
-    response = {"total": count, "_items": results}
+    response = {"total": count, "_items": cursor}
 
     return jsonify(response)
 
