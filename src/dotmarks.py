@@ -4,6 +4,7 @@ import os
 from workers.postworker import populate_dotmark, parse_log, process_attachment
 from flask import jsonify, abort
 from crossdomain import cors
+from eve.methods.common import epoch
 
 
 def after_insert_dotmark(items):
@@ -44,6 +45,11 @@ def version():
 @app.route("/tags")
 @cors(origin='*')
 def get_all_tags():
+    response = {}
+    etag = None
+
+    # continue processing the full request
+    last_update = epoch()
     dotmarks = app.data.driver.db['dotmarks']
     unwind = {"$unwind": "$tags"}
     group = {"$group": {"_id": "$tags", "count": {"$sum": 1}}}
@@ -61,7 +67,11 @@ def get_all_tags():
 
     response = {"total": total, "_items": docs}
 
-    return jsonify(response)
+    status = 200
+
+    last_modified = last_update if last_update > epoch() else None
+
+    return jsonify(response), last_modified, etag, status
 
 
 @app.route("/analytics/hours/<username>")
