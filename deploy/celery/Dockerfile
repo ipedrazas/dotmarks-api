@@ -6,7 +6,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Ivan Pedrazas <ivan@pedrazas.me>
 
-RUN apt-get update -y && apt-get install --no-install-recommends -y -q build-essential python2.7 python2.7-dev python-pip git mercurial
+RUN apt-get update -y && apt-get install --no-install-recommends -y -q build-essential python2.7 python2.7-dev python-setuptools python-pip git
 
 RUN pip install -U pip
 
