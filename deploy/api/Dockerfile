@@ -21,7 +21,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Ivan Pedrazas <ivan@pedrazas.me>
 
-RUN apt-get update && apt-get install -y build-essential python-setuptools python-pip python-dev
+RUN apt-get update && apt-get install -y build-essential python-setuptools python-pip python-dev git mercurial
 
 
 # Bundle app source
