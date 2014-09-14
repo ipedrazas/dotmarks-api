@@ -2,9 +2,10 @@ from eve import Eve
 import os
 # from utils import populate_dotmark, parse_log, process_attachment
 from workers.postworker import populate_dotmark, parse_log, process_attachment
-from flask import jsonify, abort
+from flask import jsonify, abort, make_response
 from crossdomain import cors
 from eve.methods.common import epoch
+from eve.utils import config, date_to_rfc1123
 
 
 def after_insert_dotmark(items):
@@ -46,15 +47,12 @@ def version():
 @cors(origin='*')
 def get_all_tags():
     response = {}
-    etag = None
 
-    # continue processing the full request
     last_update = epoch()
     dotmarks = app.data.driver.db['dotmarks']
     unwind = {"$unwind": "$tags"}
     group = {"$group": {"_id": "$tags", "count": {"$sum": 1}}}
     sort = {"$sort": {"count": -1}}
-    # limit = {"$limit": 40}
 
     cursor = dotmarks.aggregate([unwind, group, sort])
     docs = []
@@ -63,15 +61,19 @@ def get_all_tags():
     for doc in cursor['result']:
         if total < page_size:
             docs.append(doc)
+            if doc[config.LAST_UPDATED] > last_update:
+                last_update = doc[config.LAST_UPDATED]
         total += 1
 
     response = {"total": total, "_items": docs}
 
     status = 200
-
     last_modified = last_update if last_update > epoch() else None
 
-    return jsonify(response), last_modified, etag, status
+    resp = resp = make_response(jsonify(response), status)
+    resp.headers.add('Last-Modified', date_to_rfc1123(last_modified))
+
+    return resp
 
 
 @app.route("/analytics/hours/<username>")
