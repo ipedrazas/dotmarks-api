@@ -5,4 +5,4 @@ pymongo
 redis
 urllib3
 gunicorn
-git+git://github.com/nicolaiarocci/eve.git
+-e git://github.com/nicolaiarocci/eve.git#eve
