@@ -41,9 +41,9 @@ def version():
     return '.dotMarks v0.1'
 
 
-@app.route("/tags")
+@app.route("/tags/<page>")
 @cors(origin='*')
-def get_all_tags():
+def get_all_tags(page=None):
     response = {}
     dotmarks = app.data.driver.db['dotmarks']
     unwind = {"$unwind": "$tags"}
@@ -55,7 +55,9 @@ def get_all_tags():
     total = 0
     page_size = 40
     for doc in cursor['result']:
-        if total < page_size:
+        if page == 0:
+            docs.append(doc)
+        elif total < page_size:
             docs.append(doc)
         total += 1
 
