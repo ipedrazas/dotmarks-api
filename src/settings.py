@@ -198,9 +198,6 @@ dotmarks = {
         'tags': {
             'type': 'list'
         },
-        'atags': {              # Automatic Tags
-            'type': 'list'
-        },
         'views': {
             'type': 'integer'
         },
