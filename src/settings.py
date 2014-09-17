@@ -41,11 +41,6 @@ import os
 MONGO_HOST = os.environ.get('MONGODB_PORT_27017_TCP_ADDR')
 MONGO_PORT = int(os.environ.get('MONGODB_PORT_27017_TCP_PORT'))
 
-# MONGO_USERNAME = 'dmUser'
-# MONGO_PASSWORD = 'ZOPa676KL5K5AALlfakjhdf7adfh47r3897gl'
-# MONGO_USERNAME = 'ivan'
-# MONGO_PASSWORD = 'ivan'
-
 
 attachments = {
     'schema': {
@@ -177,8 +172,6 @@ dotmarks = {
     'public_item_methods': ['GET'],
 
     'schema': {
-        # 'public_methods': ['GET'],
-        # 'public_item_methods': ['GET'],
         '_id': {
             'type': 'string'
         },
