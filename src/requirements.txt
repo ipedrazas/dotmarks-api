@@ -1,8 +1,8 @@
 BeautifulSoup
-#Eve
+Eve
 celery
 pymongo
 redis
 urllib3
 gunicorn
--e git://github.com/nicolaiarocci/eve.git#egg=eve
+
