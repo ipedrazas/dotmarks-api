@@ -6,8 +6,8 @@
 # run: docker run -d -p 5001:5000 --link mongodb:mongodb --link redis:redis \
 #    -v /var/log/containers/dotmarks-api:/var/log --name dotmarks-api ipedrazas/dotmarks-api
 #
-# docker run -d -p 6379:6379 -v /data/redis:/data --name redis dockerfile/redis
-# docker run -d -p 27017:27017 -v /data/mongodb:/data/db  --name mongodb dockerfile/mongodb mongod
+# docker run -d -v /data/redis:/data --name redis dockerfile/redis
+# docker run -d -v /data/mongodb:/data/db  --name mongodb dockerfile/mongodb mongod
 # docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
 #       --link mongodb:mongodb --link redis:redis --name dotmarks-api ipedrazas/dotmarks-api
 #
