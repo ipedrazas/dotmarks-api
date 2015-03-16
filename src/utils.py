@@ -30,9 +30,10 @@ def get_date():
 def get_title_from_url(url):
     print "getting title from " + url
     try:
+        
         hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                'AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu '
-               'Chromium/34.0.1847.116 Chrome/34.0.1847.116 '
+               'Chromium/34.0.1847.116 Chrome/41.0.2272.89 '
                'Safari/537.36'}
 
         req = Request(url, headers=hdr)
