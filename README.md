@@ -47,7 +47,7 @@ Pull and run Redis Image:
 
 First we build our image, from the project folder we execute
 
-    docker build -t ipedrazas/dotmarks-api:1 .
+    docker build -t ipedrazas/dotmarks-api .
 
 Before running, make sure you have these directories created:
 
@@ -58,15 +58,15 @@ Before running, make sure you have these directories created:
 
 Then, to run it, we will have to do
 
-    docker run -it --rm --link mongodb:mongodb -p 5000:5000 dotmarks-api:1
+    docker run -it --rm --link mongodb:mongodb -p 5000:5000 dotmarks-api
 
 
 If you want to run it as a daemon or dettached, use the following command
 
-    # docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:1
+    # docker run -d -p 5000:5000 --link mongodb:mongodb --name dotmarks-api ipedrazas/dotmarks-api:latest
 
     docker run -d -v /var/sockets/dotmarks:/var/sockets -v /var/log/containers/dotmarks-api:/var/log \
-           --link mongodb:mongodb --link dotmarks-redis:redis --name dotmarks-api ipedrazas/dotmarks-api:1
+           --link mongodb:mongodb --link dotmarks-redis:redis --name dotmarks-api ipedrazas/dotmarks-api:latest
 
 
   [1]: http://python-eve.org/
